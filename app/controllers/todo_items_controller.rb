@@ -1,5 +1,11 @@
 class TodoItemsController < ApplicationController
   def index
+    # @user = User.find 2
+    # user = User.find 2
+    todo_item = TodoItem.find 1
+    user = todo_item.user
+
+    render plain: user.name
   end
 
   def show
