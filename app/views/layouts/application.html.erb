@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <%= render "layouts/header" %>
     <div class="container py-0">
       <%= flash_message(flash[:success], :success) if flash[:succese] %>
       <%= flash_message(flash[:error], :danger) if flash[:error] %>
