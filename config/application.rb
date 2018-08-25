@@ -31,5 +31,6 @@ module TodoApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.app_generators.scaffold_controller = :scaffold_controller
   end
 end
