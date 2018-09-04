@@ -1,5 +1,4 @@
 <h1>TodoItems#index</h1>
-<p>Find me in app/views/todo_items/index.html.erb</p>
 <table>
   <thead>
     <tr>
@@ -11,9 +10,9 @@
       <tr>
         <th><%= todo_item.title %></th>
         <th><%= todo_item.contents %></th>
+        <td><%= link_to 'Show', todo_item %></td>
+        <td><%= link_to 'Edit', edit_todo_item_path(todo_item) %></td>
+        <td><%= link_to '削除', todo_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  <tbody>
-  
-  </tbody>
 </table>
