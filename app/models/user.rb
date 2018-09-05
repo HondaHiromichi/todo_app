@@ -35,6 +35,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable
   
   has_many :todo_items
+  validates :name, presence: true, uniqueness: true, length: { minimum: 8 }
 end
 
 
