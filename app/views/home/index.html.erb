@@ -1,1 +1,12 @@
-<h1>Hello, World!</h1>
+<div class="col-md-3">
+  <div class="card p-2">
+    <%= image_tag current_user.avatar.url, class: "card-img-top rounded-circle" %>
+
+    <div class="card-body">
+      <h4 class="card-title"><%= "@#{@user}" %></h4>
+      <p class="card-text">
+        <span class="text_secondary">ユーザー情報がここに入ります。</span>
+      </p>
+    </div>
+  </div>
+</div>

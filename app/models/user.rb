@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -24,6 +23,12 @@
 #  locked_at              :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  role                   :integer          default("user"), not null
+#  name                   :string(255)      not null
+#  avatar_file_name       :string(255)
+#  avatar_content_type    :string(255)
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 
 class User < ApplicationRecord
@@ -32,10 +37,39 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :timeoutable
+         :confirmable, :lockable, :timeoutable,
+         :authentication_keys => [ :login ]
+
+  attr_accessor :login
+
+  has_attached_file :avatar,
+                    styles: { medium: '300*300>', thumb: '100*100>' },
+                    # path: "#{Rails.root}/public/:filename",
+                    default_url: '/missing.png'
+  
+  validates_attachment_content_type :avatar,
+                                    content_type: /\Aimage\/.*\z/
   
   has_many :todo_items
-  validates :name, presence: true, uniqueness: true, length: { minimum: 8 }
+  validates :name, presence: true, uniqueness: true, length: { minimum: 1 }
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["name = :value OR email = :value", { :value => login }]).first
+    else
+      where(conditions).first
+    end
+  end
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+
 end
 
 
