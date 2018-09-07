@@ -67,3 +67,7 @@ gem 'bootstrap', '~>4.1.3'
 gem 'jquery-rails'
 
 gem 'activeadmin'
+
+gem 'paperclip', '~> 5.0.0'
+
+gem 'rails-i18n'

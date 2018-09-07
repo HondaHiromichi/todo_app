@@ -7,13 +7,21 @@ class ApplicationController < ActionController::Base
 　protect_from_forgery with: :exception
   end
 
+  # def configure_permitted_parameters
+  #   added_attrs = [:name, :email, :password, :password_confirmation, :remember_me, :avatar]
+  # end
+
+  def after_sign_out_path_for(resource)
+    new_session_path(resource_name)
+  end
+
   protected
 
   def authenticate_admin_user!
     raise SecurityError unless current_user.try(:admin?)
   end 
   def configure_permitted_parameters
-    added_attrs = [ :name, :email, :password, :password_confirmation　]
+    added_attrs = [:name, :email, :password, :password_confirmation, :remember_me, :avatar]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs

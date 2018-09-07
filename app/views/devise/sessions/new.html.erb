@@ -1,9 +1,10 @@
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
   <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control col-md-5 col-sm", placeholder: "Enter email" %>
+    <%= f.label :email_or_name %><br />
+    <%= f.text_field :login, autofocus: true, class: "form-control col-md-5 col-sm", placeholder: "Email or Name" %>
   </div>
 
   <div class="form-group">
@@ -19,7 +20,7 @@
   <% end -%>
 
   <div class="actions pb-5">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン", class: "btn btn-primary" %>
   </div>
 <% end %>
 

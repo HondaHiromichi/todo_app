@@ -32,5 +32,9 @@ module TodoApp
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.app_generators.scaffold_controller = :scaffold_controller
+
+    config.i18n.default_locale = :ja
+
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'models', 'ja.yml').to_s]
   end
 end

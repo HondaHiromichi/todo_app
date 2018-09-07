@@ -282,4 +282,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   
   config.scoped_views = true
+
+  # config.authentication_keys = [:name]
+
 end
