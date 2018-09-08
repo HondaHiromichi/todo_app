@@ -15,4 +15,13 @@
 class TodoItem < ApplicationRecord
   belongs_to :user
   validates :user_id, presence: true
+
+  def self.search(search)
+    if search
+      TodoItem.where(['title LIKE ? OR contents LIKE ?', "%#{search}%", "%#{search}%"])
+    else
+      TodoItem.all
+    end
+  end
+
 end

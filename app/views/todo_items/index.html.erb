@@ -1,5 +1,16 @@
 <h1>TodoItems#index</h1>
 <table>
+  <body>
+  <%= form_tag todo_items_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "検索", :name => nil %>
+    </p>
+  <% end %>
+  
+  <%= yield %>
+  
+  </body>
   <thead>
     <tr>
       <th>title</th>
