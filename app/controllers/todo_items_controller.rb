@@ -2,7 +2,8 @@ class TodoItemsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @todo_items = current_user.todo_items
+    # @todo_items = current_user.todo_items
+    @todo_items = current_user.todo_items.search(params[:search])
   end
 
   def show
